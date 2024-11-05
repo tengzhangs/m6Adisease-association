@@ -1,0 +1,1 @@
+m6ADP-GCNPUAS integrates the random walk with restart and GCN to effectively obtain the feature vectors of m6As and diseases. Considering the sparsity of known m6A-disease associations, we adopt the PUAS to augment the potential positive samples, which enhance the inference power for disease-associated m6A sites prediction.
