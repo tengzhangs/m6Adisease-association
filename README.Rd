@@ -1,3 +1,3 @@
 # Introduction
-We propose a novel computational framework, m<sup>6<sup>A-Disease Prediction using Graph Convolutional Networks and Positive Unlabeled Learning with self-Adaptive Sampling (m6ADP-GCNPUAS), to accurately predict m6A-disease associations. m6ADP-GCNPUAS effectively captures the embedded features of 
+We propose a novel computational framework, *m<sup>6<sup>A-Disease* Prediction using Graph Convolutional Networks and Positive Unlabeled Learning with self-Adaptive Sampling (m6ADP-GCNPUAS), to accurately predict m6A-disease associations. m6ADP-GCNPUAS effectively captures the embedded features of 
 m6A sites or diseases using GCN model. Given the very limited m6A-disease associations, m6ADP-GCNPUAS adopts the PUAS framework to augment the potential positive samples, which improves the predictive power for m6A-disease associations.
