@@ -153,3 +153,10 @@ dis_sim <- read.csv(f2="./dis_similariy.csv"
 m6A_m6A_net <- m6Asites_RWR(m6A_sim)
 dis_dis_net <- dis_RWR(dis_sim)
 '''
+### Extract the embedding feartures for m6A sites and diseases by GCN model
+
+'''python
+#Runing the following python code
+m6A_embeddingGCN.py
+dis_embeddingGCN.py
+'''
