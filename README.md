@@ -24,24 +24,6 @@ seqs <- as.character(get_seq)
 write.table(seqs,file = "./m6Adis_seq.txt",row.names=F,col.names = F,quote=F)
 ```
 
-```r
-#Get the sequences of m6A sites
-fa <- "./m6Adis_asso.csv"
-m6Adis_sites <- read.csv(fa)
-library(GenomicRanges)
-
-sites_GR <- GRanges(seqnames = as.character(m6Adis_sites$seqnames),
-                  IRanges(start = as.numeric(as.character(m6Adis_sites$m6A_site)),
-                          end = as.numeric(as.character(m6Adis_sites$m6A_site))),
-                  strand = as.character(m6Adis_sites$strand))
-sites_range <- resize(sites_GR, 501,fix="center")
-library(BSgenome.Hsapiens.UCSC.hg19)
-genome <- BSgenome.Hsapiens.UCSC.hg19
-get_seq<- getSeq(genome,sites_range)
-seqs <- as.character(get_seq)
-write.table(seqs,file = "./m6Adis_seq.txt",row.names=F,col.names = F,quote=F)
-```
-
 ```python
 import logging
 from gensim.models import  Word2Vec
