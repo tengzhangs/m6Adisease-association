@@ -179,32 +179,31 @@ m6Afeats <- read.csv(file = "./m6A_GCN_embeding.csv")
 colnames(m6Afeats) <- NULL
 disfeats <- read.csv(file = "./disease_GCN_embeding.csv")
 colnames(disfeats) <- NULL
-
-  dataset <- data.frame(X,label=pred_label)
-  raw_label <- as.numeric(as.character(dataset$label))
-  dataset$label <- as.factor(ifelse(raw_label==1,"y","n"))
-  train_index <- sample(1:nrow(dataset), round(nrow(dataset) * 0.70))
+dataset <- data.frame(X,label=pred_label)
+raw_label <- as.numeric(as.character(dataset$label))
+dataset$label <- as.factor(ifelse(raw_label==1,"y","n"))
+train_index <- sample(1:nrow(dataset), round(nrow(dataset) * 0.70))
   
-  train_pre <- rfsrc(label ~ .,data = dataset[train_index,],block.size = 1,nodesize = 1)
-  test_pre <- predict.rfsrc(train_pre, dataset[-train_index, ])
+train_pre <- rfsrc(label ~ .,data = dataset[train_index,],block.size = 1,nodesize = 1)
+test_pre <- predict.rfsrc(train_pre, dataset[-train_index, ])
   
-  asso_pred_reslut <- test_pre[["predicted"]]
-  pred_value <- as.numeric(as.character(asso_pred_reslut[,2]))
-  test_label <- raw_label[-train_index]
-  pos_index <- which(test_label==1)
-  neg_index <- which(test_label==0)
-  fg <- asso_pred_reslut[pos_index,2]
-  bg <- asso_pred_reslut[neg_index,2]
-  roc <- roc.curve(scores.class0 = fg, scores.class1 = bg, curve = T)
-  # PR Curve
-  pr <- pr.curve(scores.class0 = fg, scores.class1 = bg, curve = T)
-  conf_mat <- ModelMetrics::confusionMatrix(test_label,pred_value)
-  TN <- conf_mat[1,1]
-  TP <- conf_mat[2,2]
-  FP <- conf_mat[1,2]
-  FN <- conf_mat[2,1]
-  acc <- (TP + TN) / (TP + TN + FP + FN)
-  precision <- TP / (TP + FP)
-  recall <- TP / (TP + FN)
-  F1_score <- 2*(precision*recall)/(precision+recall)
+asso_pred_reslut <- test_pre[["predicted"]]
+pred_value <- as.numeric(as.character(asso_pred_reslut[,2]))
+test_label <- raw_label[-train_index]
+pos_index <- which(test_label==1)
+neg_index <- which(test_label==0)
+fg <- asso_pred_reslut[pos_index,2]
+bg <- asso_pred_reslut[neg_index,2]
+roc <- roc.curve(scores.class0 = fg, scores.class1 = bg, curve = T)
+# PR Curve
+pr <- pr.curve(scores.class0 = fg, scores.class1 = bg, curve = T)
+conf_mat <- ModelMetrics::confusionMatrix(test_label,pred_value)
+TN <- conf_mat[1,1]
+TP <- conf_mat[2,2]
+FP <- conf_mat[1,2]
+FN <- conf_mat[2,1]
+acc <- (TP + TN) / (TP + TN + FP + FN)
+precision <- TP / (TP + FP)
+recall <- TP / (TP + FN)
+F1_score <- 2*(precision*recall)/(precision+recall)
 ```
