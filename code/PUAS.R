@@ -167,7 +167,7 @@ adpt_PU <- function(data,alpha,m6Adis_asso_infor){
   return(last_m6Adis_asso)
 }
 
-PUAS_result <- function(raw_m6Adis_asso,m6A_asso,dis_asso,m6Afeats,disfeats){
+PUAS <- function(raw_m6Adis_asso,m6A_asso,dis_asso,m6Afeats,disfeats){
   m6Adis_asso_infor <- m6Adis_asso_infor(known_asso=raw_m6Adis_asso,m6A_asso=m6A_asso,dis_asso=dis_asso)
   data <- comb_feats(m6Afeats=m6Afeats,disfeats=disfeats,m6Adis_asso_infor=m6Adis_asso_infor)
   PUAS_proc <- adpt_PU(data,alpha=0.1,m6Adis_asso_infor)
@@ -189,5 +189,5 @@ m6Afeats <- read.csv(file = "./m6A_GCN_embeding.csv")
 colnames(m6Afeats) <- NULL
 disfeats <- read.csv(file = "./disease_GCN_embeding.csv")
 colnames(disfeats) <- NULL
-PUAS_proc <- PUAS_result(raw_m6Adis_asso=m6Adis_asso,m6A_asso=m6A_asso,dis_asso=dis_asso,m6Afeats=m6Afeats,disfeats=disfeats)
+PUAS_proc <- PUAS(raw_m6Adis_asso=m6Adis_asso,m6A_asso=m6A_asso,dis_asso=dis_asso,m6Afeats=m6Afeats,disfeats=disfeats)
 write.csv(PUAS_proc,file = "./PUAS_process_m6Adis_asso.csv",row.names = F)
