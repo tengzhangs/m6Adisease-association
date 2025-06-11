@@ -166,5 +166,6 @@ m6Afeats <- read.csv(file = "./m6A_GCN_embeding.csv")
 colnames(m6Afeats) <- NULL
 disfeats <- read.csv(file = "./disease_GCN_embeding.csv")
 colnames(disfeats) <- NULL
-
+PUAS_procs <-  PUAS(raw_m6Adis_asso=m6Adis_asso,m6A_asso=m6A_asso,dis_asso=dis_asso,m6Afeats=m6Afeats,disfeats=disfeats)
+write.csv(PUAS_proc,file = "./PUAS_process_m6Adis_asso.csv",row.names = F)
 ```
