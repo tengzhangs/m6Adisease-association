@@ -25,6 +25,7 @@ write.table(seqs,file = "./m6Adis_seq.txt",row.names=F,col.names = F,quote=F)
 ```
 
 ```python
+#Get the embedding representation of m6A sites and calculate the similarity between m6A sites
 import logging
 from gensim.models import  Word2Vec
 from gensim.models.word2vec import LineSentence
