@@ -6,6 +6,16 @@ m6A sites or diseases using GCN model. Given the very limited m6A-disease associ
 ### Calculate the similarity for m6A-m6A and disease-disease
 #### Calculate the similarity for m6A sites
 
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install(c("Rsamtools","GenomicAlignments","GenomicRanges",
+                       "GenomicFeatures","rtracklayer","DESeq2","apeglm","RMariaDB"))
+                       
+install.packages("https://www.bioconductor.org/packages/3.8/bioc/src/contrib/exomePeak_2.16.0.tar.gz", repos = NULL, type="source")
+```
+
 '''r
 #Get the sequences of m6A sites
 fa <- "./m6Adis_asso.csv"
