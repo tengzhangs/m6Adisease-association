@@ -24,7 +24,7 @@ seqs <- as.character(get_seq)
 write.table(seqs,file = "./m6Adis_seq.txt",row.names=F,col.names = F,quote=F)
 ```
 
-'''r
+```r
 #Get the sequences of m6A sites
 fa <- "./m6Adis_asso.csv"
 m6Adis_sites <- read.csv(fa)
@@ -40,9 +40,9 @@ genome <- BSgenome.Hsapiens.UCSC.hg19
 get_seq<- getSeq(genome,sites_range)
 seqs <- as.character(get_seq)
 write.table(seqs,file = "./m6Adis_seq.txt",row.names=F,col.names = F,quote=F)
-'''
+```
 
-'''python
+```python
 import logging
 from gensim.models import  Word2Vec
 from gensim.models.word2vec import LineSentence
@@ -92,11 +92,9 @@ with open(word_path,"w") as fw:
                 fw.write("\n")
     fw.close()
 
-'''
-word2vec train 
-'''
-logging.basicConfig(format="%(asctime)s : %(levelname)s : %(message)s",level=logging.INFO)
+#word2vec train
 
+logging.basicConfig(format="%(asctime)s : %(levelname)s : %(message)s",level=logging.INFO)
 
 sentences=LineSentence("./pos_m6a_dis_word_10.txt")
 
@@ -108,19 +106,7 @@ model.save("./nm6a_vec")
 dataset = pd.read_csv("./pos_m6a_dis_word_10.csv")
 word=model.wv.index_to_key
 vector=model.wv.vectors
-    # feature=np.zeros((499,32))
-#    features=[]
-#    for idx, data in dataset.iterrows():
-#        wv_feature = np.zeros((99, 100))
-#        i=0
-#        for ix,char in data.items():
-#            wv_index=word.index(char)
-#            wv_feature[i,:]=vector[wv_index]
-#            i=i+1
-#        features.append(wv_feature)
-'''
-根据每个位点的分词获得每个分词的embeding，然后将每个位点分词的embeding平均就和
-'''
+
 feature = np.zeros((len(lines),100,499))
     
 for i in range(0,len(lines)):
@@ -140,9 +126,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 m1=features
 m1_similarity = cosine_similarity(m1)
 pd.DataFrame(m1_similarity).to_csv("./m6A_cosine_similarity.csv",index=False)
-'''
+```
 #### Calculate the similarity for diseases-disease
-'''r
+```r
 library(DOSE)
 library(data.table)
 f1 <- "./disease_IDinfor_new.xlsx"
@@ -162,20 +148,20 @@ s <- doSim(a1, a2, measure="Wang")
 rownames(s) <- a1
 s <- as.data.frame(s)
 write.csv(s,file = "./dis_similariy.csv",row.names = F)
-'''
+```
 ### Construct m6A-m6A interaction network and disease-disease interaction network by RWR
 
-'''r
+```r
 m6A_sim <- read.csv(f1="./m6A_cosine_similarity.csv")
 dis_sim <- read.csv(f2="./dis_similariy.csv"
 m6A_m6A_net <- m6Asites_RWR(m6A_sim)
 dis_dis_net <- dis_RWR(dis_sim)
-'''
+```
 ### Extract the embedding feartures for m6A sites and diseases by GCN model
 
-'''python
+```python
 #Runing the following python code
 m6A_embeddingGCN.py
 dis_embeddingGCN.py
-'''
+```
 ### Augmenting positive samples by PUAS
