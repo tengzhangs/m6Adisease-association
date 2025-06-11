@@ -148,7 +148,7 @@ m6A_embeddingGCN.py
 dis_embeddingGCN.py
 ```
 ### Augmenting positive samples by PUAS
-···r
+```r
 library(AdaSampling)
 library(stringr)
 library(xgboost)
