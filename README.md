@@ -5,6 +5,7 @@ m6A sites or diseases using GCN model. Given the very limited m6A-disease associ
 ## Step by Step 
 ### Calculate the similarity for m6A-m6A and disease-disease
 #### Calculate the similarity for m6A sites
+
 '''r
 #Get the sequences of m6A sites
 fa <- "./m6Adis_asso.csv"
@@ -22,6 +23,7 @@ get_seq<- getSeq(genome,sites_range)
 seqs <- as.character(get_seq)
 write.table(seqs,file = "./m6Adis_seq.txt",row.names=F,col.names = F,quote=F)
 '''
+
 '''python
 import logging
 from gensim.models import  Word2Vec
