@@ -152,4 +152,19 @@ dis_embeddingGCN.py
 library(AdaSampling)
 library(stringr)
 library(xgboost)
+#Input the raw known m6A-disease associtions
+f1 <- "./m6Adis_asso.csv"
+m6Adis_asso <- read.csv(f1)
+m6Adis_asso <- m6Adis_asso[,-c(1:5)]
+#Input the m6A-m6A interaction network and disease-disease interaction network
+f2 <- "./m6A_m6A_net.csv"
+f3 <- "./dis_dis_net.csv"
+m6A_asso <- read.csv(f2)
+dis_asso <- read.csv(f3)
+#Input the embedding feature for m6A sites and diseases
+m6Afeats <- read.csv(file = "./m6A_GCN_embeding.csv")
+colnames(m6Afeats) <- NULL
+disfeats <- read.csv(file = "./disease_GCN_embeding.csv")
+colnames(disfeats) <- NULL
+
 ```
