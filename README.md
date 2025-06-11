@@ -15,9 +15,7 @@ sites_GR <- GRanges(seqnames = as.character(m6Adis_sites$seqnames),
                   IRanges(start = as.numeric(as.character(m6Adis_sites$m6A_site)),
                           end = as.numeric(as.character(m6Adis_sites$m6A_site))),
                   strand = as.character(m6Adis_sites$strand))
-
 sites_range <- resize(sites_GR, 501,fix="center")
-
 library(BSgenome.Hsapiens.UCSC.hg19)
 genome <- BSgenome.Hsapiens.UCSC.hg19
 get_seq<- getSeq(genome,sites_range)
